@@ -11,7 +11,6 @@ const FormularioTareas = () => {
             placeholder="Ej: tarea 1"
             minLength={3}
             maxLength={50}
-         
           />
           <Button variant="primary" className="mx-2" type="submit">Enviar</Button>
         </Form.Group>

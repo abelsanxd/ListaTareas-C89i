@@ -1,12 +1,16 @@
 import { Button, Form } from "react-bootstrap";
 import Listatareas from "./Listatareas";
-import { useState } from "react";
+import { useEffect, useState  } from "react";
 
 const FormularioTareas = () => {
-  useState;
   const [nombreTarea, SetnombreTarea] = useState("");
 
-  const [tareas, setTareas] = useState([nombreTarea]);
+  const [tareas, setTareas] = useState( JSON.parse(localStorage.getItem('listaTareasKey')) || [] );
+
+useEffect (() => {
+  console.log('se actualizo el componente')
+  localStorage.setItem('listaTareasKey', JSON.stringify(tareas))
+}, [tareas])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +44,8 @@ const FormularioTareas = () => {
           </Button>
         </Form.Group>
       </Form>
-      <Listatareas tareasProps={'tareas'} borrarTarea={borrarTarea}></Listatareas>
+      <Listatareas tareasProps={tareas} borrarTarea={borrarTarea}></Listatareas>
+
     </section>
   );
 };
